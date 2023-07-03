@@ -16,3 +16,33 @@
 	background: linear-gradient(0deg, #e6eef8 0%, #e6eef8 100%), #cfd8dc;
 	box-shadow: 16px 16px 40px 0px rgba(187, 195, 206, 0.6), -16px -16px 40px 0px rgba(253, 255, 255, 0.8);
 }
+
+.sign-in-form--title {
+	color: #546e7a;
+	text-align: center;
+	font-size: 16px;
+	font-family: IBM Plex Mono;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 1px;
+}
+
+.sign-in-form--social-buttons {
+	display: flex;
+	gap: 24px;
+}
+
+.sign-in-form--social-button {
+	border: 0;
+	padding: 12px;
+
+	cursor: pointer;
+	border-radius: 48px;
+	background: linear-gradient(0deg, #e6eef8 0%, #e6eef8 100%), #cfd8dc;
+	box-shadow: 4px 4px 12px 0px rgba(187, 195, 206, 0.6), -4px -4px 12px 0px rgba(253, 255, 255, 0.8);
+}
+
+.sign-in-form--social-button-icon {
+	display: block;
+}

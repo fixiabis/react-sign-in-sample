@@ -78,6 +78,7 @@ export function SignInForm() {
 						</a>
 					</div>
 				</div>
+				<div className="sign-in-form--input-hint">Email not recognized.</div>
 			</div>
 			<div className="sign-in-form--input -password -wrapper">
 				<input className="sign-in-form--input -password" type="password" placeholder="Password" />

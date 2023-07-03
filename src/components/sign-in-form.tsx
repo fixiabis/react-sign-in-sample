@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./sign-in-form.scss";
 
 interface SignInFormState {
@@ -6,8 +6,29 @@ interface SignInFormState {
 	password: string;
 }
 
+const EMAIL_FORMAT = /.+@.+\..+/;
+const RECOGNIZABLE_EMAIL_FORMAT = /.+@waterballsa\.tw/;
+
 export function SignInForm() {
 	const [state, setState] = useState<SignInFormState>({ email: "", password: "" });
+	const [emailRecognized, setEmailRecognized] = useState(true);
+	const buttonActive = emailRecognized && state.password.length >= 6;
+
+	useEffect(() => {
+		setEmailRecognized(true);
+
+		if (!EMAIL_FORMAT.test(state.email)) {
+			return;
+		}
+
+		const timeout = setTimeout(() => {
+			setEmailRecognized(RECOGNIZABLE_EMAIL_FORMAT.test(state.email));
+		}, 500);
+
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [state.email]);
 
 	return (
 		<form className="sign-in-form">
@@ -61,38 +82,40 @@ export function SignInForm() {
 			</div>
 			<div className="sign-in-form--input -email -wrapper">
 				<input
-					className="sign-in-form--input -email -error"
+					className={"sign-in-form--input -email" + (emailRecognized ? "" : " -error")}
 					type="email"
 					placeholder="Email"
 					value={state.email}
 					onChange={(e) => setState((state) => ({ ...state, email: e.target.value }))}
 				/>
-				<div className="sign-in-form--input-popover">
-					<svg
-						className="sign-in-form--input-popover-background-image"
-						width="212"
-						height="80"
-						viewBox="0 0 212 80"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path
-							fillRule="evenodd"
-							clipRule="evenodd"
-							d="m 29.9705 0 c -8.8366 0 -16 7.1634 -16 16 v 7.0001 l -11.3136 11.3136 c -3.1242 3.1242 -3.1242 8.1895 0 11.3137 l 11.3136 11.3136 v 7.059 c 0 8.8366 7.1634 16 16 16 h 165.9995 c 8.837 0 16 -7.1634 16 -16 v -48 c 0 -8.8366 -7.163 -16 -16 -16 h -165.9995 z"
-							fill="#9574CD"
-						/>
-					</svg>
-					<div className="sign-in-form--input-popover-content">
-						<strong>Email not recognized.</strong>
-						<br />
-						Do you need to create an account?{" "}
-						<a className="sign-in-form--link" href="#">
-							Click here
-						</a>
+				{!emailRecognized && (
+					<div className="sign-in-form--input-popover">
+						<svg
+							className="sign-in-form--input-popover-background-image"
+							width="212"
+							height="80"
+							viewBox="0 0 212 80"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								fillRule="evenodd"
+								clipRule="evenodd"
+								d="m 29.9705 0 c -8.8366 0 -16 7.1634 -16 16 v 7.0001 l -11.3136 11.3136 c -3.1242 3.1242 -3.1242 8.1895 0 11.3137 l 11.3136 11.3136 v 7.059 c 0 8.8366 7.1634 16 16 16 h 165.9995 c 8.837 0 16 -7.1634 16 -16 v -48 c 0 -8.8366 -7.163 -16 -16 -16 h -165.9995 z"
+								fill="#9574CD"
+							/>
+						</svg>
+						<div className="sign-in-form--input-popover-content">
+							<strong>Email not recognized.</strong>
+							<br />
+							Do you need to create an account?{" "}
+							<a className="sign-in-form--link" href="#">
+								Click here
+							</a>
+						</div>
 					</div>
-				</div>
-				<div className="sign-in-form--input-hint">Email not recognized.</div>
+				)}
+				{!emailRecognized && <div className="sign-in-form--input-hint">Email not recognized.</div>}
 			</div>
 			<div className="sign-in-form--input -password -wrapper">
 				<input
@@ -118,7 +141,7 @@ export function SignInForm() {
 					</svg>
 				</div>
 			</div>
-			<button className="sign-in-form--button -active" type="submit">
+			<button className={"sign-in-form--button" + (buttonActive ? " -active" : "")} type="submit">
 				Sign In
 			</button>
 			<div className="sign-in-form--hints">

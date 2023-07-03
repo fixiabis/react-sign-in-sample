@@ -1,6 +1,14 @@
+import { useState } from "react";
 import "./sign-in-form.scss";
 
+interface SignInFormState {
+	email: string;
+	password: string;
+}
+
 export function SignInForm() {
+	const [state, setState] = useState<SignInFormState>({ email: "", password: "" });
+
 	return (
 		<form className="sign-in-form">
 			<div className="sign-in-form--title">Welcome Back</div>
@@ -52,7 +60,13 @@ export function SignInForm() {
 				</button>
 			</div>
 			<div className="sign-in-form--input -email -wrapper">
-				<input className="sign-in-form--input -email -error" type="email" placeholder="Email" />
+				<input
+					className="sign-in-form--input -email -error"
+					type="email"
+					placeholder="Email"
+					value={state.email}
+					onChange={(e) => setState((state) => ({ ...state, email: e.target.value }))}
+				/>
 				<div className="sign-in-form--input-popover">
 					<svg
 						className="sign-in-form--input-popover-background-image"
@@ -81,7 +95,13 @@ export function SignInForm() {
 				<div className="sign-in-form--input-hint">Email not recognized.</div>
 			</div>
 			<div className="sign-in-form--input -password -wrapper">
-				<input className="sign-in-form--input -password" type="password" placeholder="Password" />
+				<input
+					className="sign-in-form--input -password"
+					type="password"
+					placeholder="Password"
+					value={state.password}
+					onChange={(e) => setState((state) => ({ ...state, password: e.target.value }))}
+				/>
 				<div className="sign-in-form--password-visibility-toggle">
 					<svg
 						className="sign-in-form--password-visibility-toggle-icon"

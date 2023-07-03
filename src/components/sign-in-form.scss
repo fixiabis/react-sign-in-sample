@@ -70,6 +70,10 @@
 	&.-password {
 		padding-right: calc(16px + 16px);
 	}
+
+	&.-error {
+		border-color: #f06292;
+	}
 }
 
 .sign-in-form--input.-wrapper {
@@ -78,6 +82,14 @@
 	& > .sign-in-form--input {
 		width: 100%;
 		height: 100%;
+	}
+
+	& > .sign-in-form--input-popover {
+		position: absolute;
+		width: 212px;
+		height: 80px;
+		top: calc((80px - 48px) / 2 * -1);
+		right: calc((212px + 20px) * -1);
 	}
 
 	&.-password > .sign-in-form--password-visibility-toggle {
@@ -111,6 +123,13 @@
 	font-weight: 700;
 	line-height: normal;
 	letter-spacing: 1px;
+
+	&.-active {
+		background-color: #9574cd;
+		box-shadow: 4px 4px 12px 0px rgba(187, 195, 206, 0.6), -4px -4px 12px 0px rgba(253, 255, 255, 0.8);
+
+		color: #fff;
+	}
 }
 
 .sign-in-form--hints {
@@ -131,4 +150,27 @@
 
 .sign-in-form--link {
 	color: inherit;
+}
+
+.sign-in-form--input-popover {
+	position: relative;
+
+	.sign-in-form--input-popover-content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.sign-in-form--input-popover-content {
+	padding: 16px 16px 16px 30px;
+
+	color: #fff;
+	font-size: 12px;
+	font-family: IBM Plex Mono;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
 }

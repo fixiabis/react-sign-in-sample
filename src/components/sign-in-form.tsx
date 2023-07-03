@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./sign-in-form.scss";
 
 interface SignInFormState {
@@ -30,8 +30,14 @@ export function SignInForm() {
 		};
 	}, [state.email]);
 
+	const handleSubmit = () => {
+		setTimeout(() => {
+			alert("登入完成！");
+		}, 500);
+	};
+
 	return (
-		<form className="sign-in-form">
+		<form className="sign-in-form" onSubmit={handleSubmit}>
 			<div className="sign-in-form--title">Welcome Back</div>
 			<div className="sign-in-form--social-buttons">
 				<button className="sign-in-form--social-button -facebook" type="button">

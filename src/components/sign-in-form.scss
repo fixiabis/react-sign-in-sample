@@ -94,3 +94,41 @@
 .sign-in-form--password-visibility-toggle-icon {
 	display: block;
 }
+
+.sign-in-form--button {
+	padding: 16px 28px;
+
+	cursor: pointer;
+	border: 0;
+	border-radius: 16px;
+	background: #cfd8dc;
+
+	color: #90a4ae;
+	text-align: center;
+	font-size: 12px;
+	font-family: IBM Plex Mono;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 1px;
+}
+
+.sign-in-form--hints {
+	& > .sign-in-form--hint + .sign-in-form--hint {
+		margin-top: 8px;
+	}
+}
+
+.sign-in-form--hint {
+	color: #546e7a;
+	text-align: center;
+	font-size: 12px;
+	font-family: IBM Plex Mono;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+.sign-in-form--link {
+	color: inherit;
+}

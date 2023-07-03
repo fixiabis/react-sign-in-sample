@@ -1,3 +1,5 @@
+import "./sign-in-form.scss";
+
 export function SignInForm() {
 	return (
 		<form className="sign-in-form">
@@ -9,14 +11,14 @@ export function SignInForm() {
 			</div>
 			<div className="sign-in-form--input -email -wrapper">
 				<input className="sign-in-form--input -email" type="email" placeholder="Email" />
-				<div className="sign-in-form--input-popover">
+				{/* <div className="sign-in-form--input-popover">
 					<strong>Email not recognized.</strong>
 					<br />
 					Do you need to create an account?{" "}
 					<a className="sign-in-form--link" href="#">
 						Click here
 					</a>
-				</div>
+				</div> */}
 			</div>
 			<div className="sign-in-form--input -password -wrapper">
 				<input className="sign-in-form--input -password" type="password" placeholder="Password" />

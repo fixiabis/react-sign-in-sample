@@ -1,0 +1,18 @@
+@import "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap";
+
+.sign-in-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+	padding: 24px;
+
+	& > .sign-in-form--input {
+		width: 100%;
+		height: 48px;
+	}
+
+	border-radius: 16px;
+	background: linear-gradient(0deg, #e6eef8 0%, #e6eef8 100%), #cfd8dc;
+	box-shadow: 16px 16px 40px 0px rgba(187, 195, 206, 0.6), -16px -16px 40px 0px rgba(253, 255, 255, 0.8);
+}

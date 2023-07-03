@@ -46,3 +46,51 @@
 .sign-in-form--social-button-icon {
 	display: block;
 }
+
+.sign-in-form--input:not(.-wrapper) {
+	padding: 16px;
+
+	border: 1px solid transparent;
+	border-radius: 16px;
+	background: linear-gradient(0deg, #e6eef8 0%, #e6eef8 100%), #cfd8dc;
+	box-shadow: 4px 4px 12px 0px rgba(187, 195, 206, 0.6) inset, -4px -4px 12px 0px rgba(253, 255, 255, 0.8) inset;
+
+	color: #546e7a;
+	font-size: 12px;
+	font-family: IBM Plex Mono;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: 1px;
+
+	&::placeholder {
+		color: #90a4ae;
+	}
+
+	&.-password {
+		padding-right: calc(16px + 16px);
+	}
+}
+
+.sign-in-form--input.-wrapper {
+	position: relative;
+
+	& > .sign-in-form--input {
+		width: 100%;
+		height: 100%;
+	}
+
+	&.-password > .sign-in-form--password-visibility-toggle {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+	}
+}
+
+.sign-in-form--password-visibility-toggle {
+	cursor: pointer;
+}
+
+.sign-in-form--password-visibility-toggle-icon {
+	display: block;
+}

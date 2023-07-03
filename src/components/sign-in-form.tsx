@@ -12,6 +12,7 @@ const RECOGNIZABLE_EMAIL_FORMAT = /.+@waterballsa\.tw/;
 export function SignInForm() {
 	const [state, setState] = useState<SignInFormState>({ email: "", password: "" });
 	const [emailRecognized, setEmailRecognized] = useState(true);
+	const submittingRef = useRef(false);
 	const buttonActive = emailRecognized && state.password.length >= 6;
 
 	useEffect(() => {
@@ -31,8 +32,15 @@ export function SignInForm() {
 	}, [state.email]);
 
 	const handleSubmit = () => {
+		if (!buttonActive || !EMAIL_FORMAT.test(state.email) || submittingRef.current) {
+			return;
+		}
+
+		submittingRef.current = true;
+
 		setTimeout(() => {
 			alert("登入完成！");
+			submittingRef.current = false;
 		}, 500);
 	};
 

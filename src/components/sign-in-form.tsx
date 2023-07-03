@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { SignInFormEmailInput } from "./sign-in-form-email-input";
+import { useEmailRecognition } from "./sign-in-form-email-recognition";
 import "./sign-in-form.scss";
 
 interface SignInFormState {
@@ -7,33 +8,14 @@ interface SignInFormState {
 	password: string;
 }
 
-const EMAIL_FORMAT = /.+@.+\..+/;
-const RECOGNIZABLE_EMAIL_FORMAT = /.+@waterballsa\.tw/;
-
 export function SignInForm() {
 	const [state, setState] = useState<SignInFormState>({ email: "", password: "" });
-	const [emailRecognized, setEmailRecognized] = useState(true);
+	const { emailRecognizing, emailRecognized } = useEmailRecognition(state.email);
 	const submittingRef = useRef(false);
 	const buttonActive = emailRecognized && state.password.length >= 6;
 
-	useEffect(() => {
-		setEmailRecognized(true);
-
-		if (!EMAIL_FORMAT.test(state.email)) {
-			return;
-		}
-
-		const timeout = setTimeout(() => {
-			setEmailRecognized(RECOGNIZABLE_EMAIL_FORMAT.test(state.email));
-		}, 500);
-
-		return () => {
-			clearTimeout(timeout);
-		};
-	}, [state.email]);
-
 	const handleSubmit = () => {
-		if (!buttonActive || !EMAIL_FORMAT.test(state.email) || submittingRef.current) {
+		if (!buttonActive || submittingRef.current) {
 			return;
 		}
 
@@ -99,6 +81,7 @@ export function SignInForm() {
 				value={state.email}
 				onValueChange={(email) => setState((state) => ({ ...state, email }))}
 				emailRecognized={emailRecognized}
+				emailRecognizing={emailRecognizing}
 			/>
 			<div className="sign-in-form--input -password -wrapper">
 				<input

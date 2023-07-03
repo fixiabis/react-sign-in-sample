@@ -2,16 +2,18 @@ export interface SignInFormEmailInputProps {
 	value: string;
 	onValueChange: (value: string) => void;
 	emailRecognized: boolean;
+	emailRecognizing: boolean;
 }
 
 export function SignInFormEmailInput(props: SignInFormEmailInputProps) {
-	const popover = !props.emailRecognized && renderPopover();
-	const hint = !props.emailRecognized && <div className="sign-in-form--input-hint">Email not recognized.</div>;
+	const errorHappened = !props.emailRecognizing && !props.emailRecognized;
+	const popover = errorHappened && renderPopover();
+	const hint = errorHappened && <div className="sign-in-form--input-hint">Email not recognized.</div>;
 
 	return (
 		<div className="sign-in-form--input -email -wrapper">
 			<input
-				className={"sign-in-form--input -email" + (props.emailRecognized ? "" : " -error")}
+				className={"sign-in-form--input -email" + (errorHappened ? " -error" : "")}
 				type="email"
 				placeholder="Email"
 				value={props.value}

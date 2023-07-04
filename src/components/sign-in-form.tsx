@@ -15,7 +15,9 @@ export function SignInForm() {
 	const submittingRef = useRef(false);
 	const buttonActive = emailRecognized && state.password.length >= 6;
 
-	const handleSubmit = () => {
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
 		if (!buttonActive || submittingRef.current) {
 			return;
 		}

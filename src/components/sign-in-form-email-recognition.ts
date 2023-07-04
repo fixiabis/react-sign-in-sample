@@ -8,6 +8,7 @@ export function useEmailRecognition(email: string) {
 	const [emailRecognized, setEmailRecognized] = useState(true);
 
 	useEffect(() => {
+		setEmailRecognized(false);
 		setEmailRecognizing(true);
 
 		if (!EMAIL_FORMAT.test(email)) {

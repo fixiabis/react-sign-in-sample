@@ -1,4 +1,17 @@
-#root {
+#root,
+.sign-in-page {
 	width: 100%;
 	height: 100%;
+}
+
+.sign-in-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	& > .sign-in-form {
+		width: 300px;
+	}
+
+	background-color: #dce5f2;
 }

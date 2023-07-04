@@ -1,8 +1,12 @@
-import React from "react";
+import { useEffect } from "react";
 import "./App.scss";
 
 function App() {
-	return <React.Fragment></React.Fragment>;
+	useEffect(() => {
+		document.title = "Sign In";
+	}, []);
+
+	return <div className="sign-in-page"></div>;
 }
 
 export default App;

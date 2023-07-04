@@ -41,6 +41,12 @@
 	border-radius: 48px;
 	background: linear-gradient(0deg, #e6eef8 0%, #e6eef8 100%), #cfd8dc;
 	box-shadow: 4px 4px 12px 0px rgba(187, 195, 206, 0.6), -4px -4px 12px 0px rgba(253, 255, 255, 0.8);
+
+	transition: box-shadow 250ms;
+
+	&:active {
+		box-shadow: 0px 0px 0px 0px transparent, -0px -0px 0px 0px transparent;
+	}
 }
 
 .sign-in-form--social-button-icon {
@@ -145,6 +151,8 @@
 }
 
 .sign-in-form--hint {
+	--sign-in-form--link--color--hover: #9574cd;
+
 	color: #546e7a;
 	text-align: center;
 	font-size: 12px;
@@ -156,6 +164,10 @@
 
 .sign-in-form--link {
 	color: inherit;
+
+	&:hover {
+		color: var(--sign-in-form--link--color--hover);
+	}
 }
 
 .sign-in-form--input-popover {
@@ -168,6 +180,8 @@
 		width: 100%;
 		height: 100%;
 	}
+
+	animation: sign-in-form--input-popover 250ms;
 }
 
 .sign-in-form--input-popover-content {
@@ -204,5 +218,12 @@
 		&.-email > .sign-in-form--input-popover {
 			display: none;
 		}
+	}
+}
+
+@keyframes sign-in-form--input-popover {
+	from {
+		opacity: 0;
+		transform: translateY(10%);
 	}
 }

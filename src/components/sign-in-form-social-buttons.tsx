@@ -6,7 +6,7 @@ const PLATFORM_COMPONENT_PAIRS = Object.entries({
 
 export function SignInFormSocialButtons() {
 	const buttons = PLATFORM_COMPONENT_PAIRS.map(([platform, Icon]) => (
-		<button className={`sign-in-form--social-button -${platform}`} type="button">
+		<button className={`sign-in-form--social-button -${platform}`} type="button" key={platform}>
 			<Icon />
 		</button>
 	));
